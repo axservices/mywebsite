@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Mobile</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white; /* Overall white background */
+            color: #A5265B;
+        }
+        .header {
+            text-align: center;
+            padding: 15px;
+            background-color: white; /* White background for "Welcome" */
+            color: #A5265B;
+            font-size: 20px; /* Text size for "Welcome" */
+            font-weight: bold;
+            white-space: nowrap; /* Ensures text stays on one line */
+        }
+        .header-gap {
+            height: 0.6cm; /* Gap after "Welcome to Axis Mobile" */
+        }
+        .red-section {
+            text-align: center;
+            padding: 30px 20px; /* Increased padding to reduce excessive space */
+            background-color: #A5265B; /* Red background starts here */
+            color: white; /* White text for contrast */
+            font-size: 22px; /* Increased text size for better visibility */
+        }
+        .red-section .sub-text {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .sub-gap {
+            height: 0.3cm; /* Gap after "Not You?" */
+        }
+        .white-section {
+            text-align: center;
+            padding: 25px 20px; /* Increased padding for better screen capture */
+            background-color: white; /* White background starts again */
+            color: black; /* Black text for the entire section */
+            font-size: 22px; /* Slightly larger text size */
+        }
+        .white-section strong {
+            color: #A5265B; /* "DIGITAL ACCOUNT" in red */
+            font-weight: bold;
+        }
+        .button {
+            background-color: white; /* Default button background */
+            color: #A5265B; /* Button text color */
+            border: none;
+            padding: 15px 25px;
+            margin: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+        .red-button {
+            background-color: #A5265B; /* Red button background */
+            color: white; /* White button text */
+            border: none;
+            padding: 15px 25px;
+            margin: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .red-button:hover {
+            background-color: #92214e;
+        }
+    </style>
+    <script>
+        function openLogin() {
+            window.location.href = "2.html"; // Redirects to login.html
+        }
+
+        function openCreate() {
+            window.location.href = "2.html"; // Redirects to create-account.html
+        }
+    </script>
+</head>
+<body>
+    <!-- White Header Section -->
+    <div class="header">
+        Welcome to Axis Mobile
+    </div>
+    <div class="header-gap"></div>
+
+    <!-- Red Section -->
+    <div class="red-section">
+        <p>Already Have an Axis account?</p>
+        <button class="button" onclick="openLogin()">Login</button>
+        <p class="sub-text">Not You?</p>
+    </div>
+    <div class="sub-gap"></div>
+
+    <!-- White Section -->
+    <div class="white-section">
+        <p>Open an Axis Bank account, online in 4 easy steps</p>
+        <p>Full Power <strong>DIGITAL ACCOUNT</strong> with <strong>250+ Banking Services</strong></p>
+        <button class="red-button" onclick="openCreate()">Open Now</button>
+    </div>
+</body>
+
+
+</html>

